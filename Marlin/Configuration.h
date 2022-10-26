@@ -36,11 +36,11 @@
  * Advanced settings can be found in Configuration_adv.h
  */
 #define CONFIGURATION_H_VERSION 02010200
-
+//#include "configuration_adv.h"
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(SKR1.4 + TFT3.5 - Custom Delta, D.Adamik 16.09.2022)"
+#define STRING_CONFIG_H_AUTHOR "(SKR1.4 + TFT3.5 - Custom Delta, D.Adamik 26.10.2022)"
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 // @section machine
@@ -234,7 +234,7 @@
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  *
  */
-#define TEMP_SENSOR_0 11
+#define TEMP_SENSOR_0 5
 #define TEMP_SENSOR_BED 11
 #define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 0
@@ -562,19 +562,19 @@ TODO: check it
  */
 
 // variables to calculate steps
-#define XYZ_FULL_STEPS_PER_ROTATION 200
-#define XYZ_MICROSTEPS              16             //real, not interpolated by TMC
+#define XYZ_FULL_STEPS_PER_ROTATION 200            //1,8 degree stepper
 #define XYZ_BELT_PITCH              2              //GT2
 #define XYZ_PULLEY_TEETH            16             //16 teeth pulley
 
-#define E0_FULL_STEPS_PER_ROTATION XYZ_FULL_STEPS_PER_ROTATION
-#define E0_MICROSTEPS              XYZ_MICROSTEPS               
+#define E0_FULL_STEPS_PER_ROTATION  200           //1,8 degree stepper
 #define E0_PULLEY_DIAMETER 35                     //35mm brass pulley
 
-#define DEFAULT_XYZ_STEPS_PER_UNIT  ((XYZ_FULL_STEPS_PER_ROTATION) * (XYZ_MICROSTEPS)) / (double(XYZ_BELT_PITCH) * double(XYZ_PULLEY_TEETH))
+#define DEFAULT_X_STEPS_PER_UNIT    ((XYZ_FULL_STEPS_PER_ROTATION) * (X_MICROSTEPS)) / (double(XYZ_BELT_PITCH) * double(XYZ_PULLEY_TEETH))
+#define DEFAULT_Y_STEPS_PER_UNIT    ((XYZ_FULL_STEPS_PER_ROTATION) * (Y_MICROSTEPS)) / (double(XYZ_BELT_PITCH) * double(XYZ_PULLEY_TEETH))
+#define DEFAULT_Z_STEPS_PER_UNIT    ((XYZ_FULL_STEPS_PER_ROTATION) * (Z_MICROSTEPS)) / (double(XYZ_BELT_PITCH) * double(XYZ_PULLEY_TEETH))
 #define DEFAULT_E0_STEPS_PER_UNIT   ((E0_FULL_STEPS_PER_ROTATION) * (E0_MICROSTEPS)) / E0_PULLEY_DIAMETER
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { DEFAULT_XYZ_STEPS_PER_UNIT, DEFAULT_XYZ_STEPS_PER_UNIT, DEFAULT_XYZ_STEPS_PER_UNIT, DEFAULT_E0_STEPS_PER_UNIT }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { DEFAULT_X_STEPS_PER_UNIT, DEFAULT_Y_STEPS_PER_UNIT, DEFAULT_Z_STEPS_PER_UNIT, DEFAULT_E0_STEPS_PER_UNIT }
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
