@@ -459,7 +459,7 @@ TODO: check it
 #define DELTA_PRINTABLE_RADIUS 80.0     // (mm) // Print surface diameter/2 minus unreachable space (avoid collisions with vertical towers).
 #define DELTA_DIAGONAL_ROD 248.88       // (mm) // Center-to-center distance of the holes in the diagonal push rods.
 #define DELTA_HEIGHT 300.0              // (mm) Get this value from G33 auto calibrate // Distance between bed and nozzle Z home position
-#define DELTA_RADIUS 140.8603           // (mm) Horizontal distance bridged by diagonal push rods when effector is centered.
+#define DELTA_RADIUS 140.8           // (mm) Horizontal distance bridged by diagonal push rods when effector is centered.
 
 // Trim adjustments for individual towers
 // tower angle corrections for X and Y tower / rotate XYZ so Z tower angle = 0
@@ -959,20 +959,6 @@ TODO: check it
 // The center of the bed is at (X=0, Y=0)
 #define BED_CENTER_AT_0_0
 
-/**
- * Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
- *
- * - Moves the Z probe (or nozzle) to a defined XY point before Z homing.
- * - Allows Z homing only when XY positions are known and trusted.
- * - If stepper drivers sleep, XY homing may be required again before Z homing.
- */
-//#define Z_SAFE_HOMING
-
-#if ENABLED(Z_SAFE_HOMING)
-  #define Z_SAFE_HOMING_X_POINT X_CENTER  // X point for Z homing
-  #define Z_SAFE_HOMING_Y_POINT Y_CENTER  // Y point for Z homing
-#endif
-
 // Homing speeds (linear=mm/min, rotational=°/min)
 #define HOMING_FEEDRATE_MM_M { XY_PROBE_FEEDRATE, XY_PROBE_FEEDRATE, XY_PROBE_FEEDRATE }
 
@@ -1029,7 +1015,7 @@ TODO: check it
 #define PREHEAT_2_LABEL       "PLA"
 #define PREHEAT_2_TEMP_HOTEND 205
 #define PREHEAT_2_TEMP_BED    60
-#define PREHEAT_2_FAN_SPEED   255 // Value from 0 to 255
+#define PREHEAT_2_FAN_SPEED   0 // Value from 0 to 255
 
 // @section motion
 
